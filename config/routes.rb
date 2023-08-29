@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get '/homes/about' ,to: 'homes#about', as: 'about'  
   resources :post_images, only: [:new, :create,:index, :show, :destroy] do
+    resource :favorites, only: [:create, :destroy]  #resourceと単数形にすると、/:idがURLに含まれなる
     resources :post_comments, only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit, :update]
